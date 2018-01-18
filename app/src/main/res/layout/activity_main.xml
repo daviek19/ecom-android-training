@@ -47,6 +47,12 @@
             android:text="Button"
             tools:layout_editor_absoluteX="111dp"
             tools:layout_editor_absoluteY="355dp" />
+
+        <Button
+            android:id="@+id/btn_view_customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Customers" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.ecom.app.ecom_crud;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText customerName;
     private EditText customerId;
     private EditText customerNo;
-    private Button submitBtn;
+    private Button submitBtn, viewCustomersBtn;
     private String customerNameStr, customerNoStr, customerIdStr;
     private final String TAG = "CustomerCreate";
     private CustomerManager customerManager;
@@ -32,13 +33,12 @@ public class MainActivity extends AppCompatActivity {
         customerId = (EditText) findViewById(R.id.customer_id);
         customerNo = (EditText) findViewById(R.id.customer_no);
         submitBtn = (Button) findViewById(R.id.submit_btn);
+        viewCustomersBtn = (Button) findViewById(R.id.btn_view_customer);
 
         //handle validation when button is clicked;
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 //validate inputs
                 customerNameStr = customerName.getText().toString();
                 customerNoStr = customerNo.getText().toString();
@@ -55,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        //open a new activity eith intent
+
+        viewCustomersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent openViewCustomers = new Intent(MainActivity.this, CustomersActivity.class);
+                startActivity(openViewCustomers);
             }
         });
     }
