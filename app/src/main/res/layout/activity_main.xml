@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ecom.app.ecom_crud.MainActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="40dp">
+
+        <EditText
+            android:id="@+id/customer_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter full name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/customer_id"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter ID No"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/customer_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter customer no"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="51dp"
+            tools:layout_editor_absoluteY="237dp" />
+
+        <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            tools:layout_editor_absoluteX="111dp"
+            tools:layout_editor_absoluteY="355dp" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
