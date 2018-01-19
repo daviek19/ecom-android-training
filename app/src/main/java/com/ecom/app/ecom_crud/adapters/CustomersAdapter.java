@@ -3,6 +3,7 @@ package com.ecom.app.ecom_crud.adapters;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ecom.app.ecom_crud.CustomerEditActivity;
 import com.ecom.app.ecom_crud.R;
 import com.ecom.app.ecom_crud.models.Customer;
 
@@ -35,7 +37,7 @@ public class CustomersAdapter extends RecyclerView.Adapter<CustomersViewHolder> 
         }
     }
 
-    public CustomersAdapter (List<Customer> customers, int rowLayout, Context context) {
+    public CustomersAdapter(List<Customer> customers, int rowLayout, Context context) {
         this.context = context;
         this.customers = customers;
         this.rowLayout = rowLayout;
@@ -50,9 +52,20 @@ public class CustomersAdapter extends RecyclerView.Adapter<CustomersViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(CustomersViewHolder holder, int position) {
+    public void onBindViewHolder(CustomersViewHolder holder, final int position) {
         //This is where we bind the data to the view objects that we inflated
         holder.customerName.setText(customers.get(position).getCustomerName());
+
+        holder.customerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CustomerEditActivity.class);
+                intent.putExtra("customer_id", customers.get(position).getId());
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

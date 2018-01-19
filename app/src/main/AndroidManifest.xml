@@ -12,11 +12,14 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomersActivity"></activity>
+        <activity android:name=".CustomersActivity" />
+        <activity
+            android:name=".CustomerEditActivity"
+            android:parentActivityName=".CustomersActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

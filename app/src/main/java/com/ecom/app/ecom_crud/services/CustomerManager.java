@@ -61,8 +61,9 @@ public class CustomerManager {
                 String customerName = row.getString(row.getColumnIndex("customer_name"));
                 String customerNo = row.getString(row.getColumnIndex("cusomer_no"));
                 String customerid = row.getString(row.getColumnIndex("cusomer_idno"));
+                String id = row.getString(row.getColumnIndex("id"));
                 //Add a new customer for every iteration
-                customers.add(new Customer(customerName, customerNo, customerid));
+                customers.add(new Customer(customerName, customerNo, customerid, id));
             }
 
         } catch (Exception ex) {
@@ -70,5 +71,78 @@ public class CustomerManager {
         }
 
         return customers;
+    }
+
+    public Customer GetSingleCustomer(String identification) {
+        Customer customer = new Customer();
+
+        if (identification.isEmpty())
+            return customer;
+        //fetch the custome rfrom db
+
+        Cursor row = null;
+
+        try {
+            SQLiteDatabase db = dbManager.getWritableDatabase();
+
+            String query = String.format("SELECT * FROM tbl_customer WHERE id = '%s';", identification);
+            row = db.rawQuery(query, null);
+
+            while (row.moveToNext()) {
+
+                String customerName = row.getString(row.getColumnIndex("customer_name"));
+                String customerNo = row.getString(row.getColumnIndex("cusomer_no"));
+                String customerid = row.getString(row.getColumnIndex("cusomer_idno"));
+                String id = row.getString(row.getColumnIndex("id"));
+                //Add a new customer for every iteration
+                customer = new Customer(customerName, customerNo, customerid, id);
+
+            }
+
+        } catch (Exception ex) {
+            Log.d(TAG, "Error getting single customer " + ex.getMessage());
+        }
+        return customer;
+
+    }
+
+    public boolean UpdateCustomer(Customer customer) {
+        boolean updated = false;
+        try {
+
+            SQLiteDatabase db = dbManager.getReadableDatabase();
+
+            ContentValues cv = new ContentValues();
+            cv.put("cusomer_no", customer.getCustomerNo());
+            cv.put("customer_name", customer.getCustomerName());
+            cv.put("cusomer_idno", customer.getGetCustomerId());
+
+            String whereClause = String.format("id=%s", customer.getId());
+
+            if (db.update("tbl_customer", cv, whereClause, null) >= 1)
+                updated = true;
+
+        } catch (Exception ex) {
+            Log.d(TAG, "Error Updating db");
+        }
+
+        return updated;
+    }
+
+    public boolean DeleteCustomer(Customer customer) {
+        boolean deleted = false;
+
+        try {
+            SQLiteDatabase db = dbManager.getReadableDatabase();
+            String whereClause = String.format("id=%s", customer.getId());
+
+            if (db.delete("tbl_customer", whereClause, null) >= 1)
+                deleted = true;
+
+        } catch (Exception ex) {
+            Log.d(TAG, "Error deleting db");
+        }
+
+        return deleted;
     }
 }
