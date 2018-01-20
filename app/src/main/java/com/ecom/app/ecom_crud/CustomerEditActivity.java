@@ -3,6 +3,7 @@ package com.ecom.app.ecom_crud;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.ecom.app.ecom_crud.models.Customer;
@@ -14,6 +15,7 @@ public class CustomerEditActivity extends AppCompatActivity {
     private CustomerManager customerManager;
     private Customer customer;
     private EditText customerNameEdit, customerNoEdit, customerIdnoEdit;
+    private Button submitBtnUpdate, btnDeleteCustomer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,10 @@ public class CustomerEditActivity extends AppCompatActivity {
         customerNameEdit = (EditText) findViewById(R.id.customer_name_edit);
         customerNoEdit = (EditText) findViewById(R.id.customer_no_edit);
         customerIdnoEdit = (EditText) findViewById(R.id.customer_no_edit);
+        submitBtnUpdate = (Button) findViewById(R.id.submit_btn_update);
+        btnDeleteCustomer = (Button) findViewById(R.id.btn_delete_customer);
 
         customerManager = new CustomerManager(getApplicationContext());
-
 
         //get the customer id that we passd from the previous intent
         Intent ourNewIntent = getIntent();
@@ -38,6 +41,5 @@ public class CustomerEditActivity extends AppCompatActivity {
         customerNameEdit.setText(customer.getCustomerName());
         customerNoEdit.setText(customer.getCustomerNo());
         customerIdnoEdit.setText(customer.getCustomerNo());
-
     }
 }
